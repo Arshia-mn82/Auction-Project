@@ -6,6 +6,14 @@ from django.http.response import JsonResponse
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 import json
 from .permissions import *
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+
+class Login(TokenObtainPairView):
+    pass
+
+class refresh(TokenObtainPairView):
+    pass
 
 
 class CheckOffer(APIView):
