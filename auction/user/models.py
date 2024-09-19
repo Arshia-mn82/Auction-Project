@@ -2,16 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Provider(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
 class Auctions(models.Model):
     name = models.CharField(max_length=100)
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
 
 
 class Customer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    auctions = models.ManyToManyField(Auctions)
-
-
-class Provider(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     auctions = models.ManyToManyField(Auctions)
 
