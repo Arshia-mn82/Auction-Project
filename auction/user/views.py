@@ -1,8 +1,10 @@
 from .models import *
-from .serializers import *
+from .serializer import *
 from rest_framework.views import APIView
 from datetime import datetime
 from django.http.response import JsonResponse
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+import json
 
 
 class CheckOffer(APIView):
@@ -34,3 +36,19 @@ class CheckOffer(APIView):
         else:
             return JsonResponse("Not valid Time or Price", safe=False)
 
+
+class CreateAuction(ListCreateAPIView):
+    queryset = Auctions.objects.all()
+    serializer_class = AuctionsSerilizer
+
+
+class DeleteAuction(RetrieveUpdateDestroyAPIView):
+    queryset = Auctions.objects.all()
+    serializer_class = AuctionsSerilizer
+
+
+class FinishedProducts(APIView):
+    def get(self, request):
+        finished_products = Product.objects.filter(end_time__lt=datetime.now())
+        finished_products = json.dumps(finished_products)
+        return JsonResponse(finished_products, safe=False)
