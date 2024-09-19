@@ -20,7 +20,7 @@ class Product(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     base_price = models.FloatField()
-    highest_price = models.FloatField()
+    highest_price = models.FloatField(default=base_price)
     auctions = models.ForeignKey(Auctions, on_delete=models.CASCADE)
 
 
