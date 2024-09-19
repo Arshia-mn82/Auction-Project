@@ -10,5 +10,6 @@ urlpatterns = [
     path('refresh/' , Refresh.as_view()),
     path('create-provider/' , CreateProvider.as_view()),
     path('create-product/' , CreateProduct.as_view()),
-    path('create-customer/' , CreateCustomer.as_view())
+    path('create-customer/' , CreateCustomer.as_view()),
+    path('offers/' , DetailOffer.as_view())
 ]

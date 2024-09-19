@@ -3,11 +3,12 @@ from .serializer import *
 from rest_framework.views import APIView
 import datetime
 from django.http.response import JsonResponse
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView , ListAPIView
 import json
 from .permissions import *
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from datetime import timedelta
+
 
 
 class Login(TokenObtainPairView):
@@ -80,3 +81,6 @@ class CreateCustomer(ListCreateAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerilizer
 
+class DetailOffer(ListAPIView):
+    queryset = Offer.objects.all()
+    serializer_class = OfferSerilizer
