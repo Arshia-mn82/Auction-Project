@@ -8,7 +8,7 @@ import json
 from .permissions import *
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from datetime import timedelta
-
+from rest_framework.permissions import IsAdminUser, IsAuthenticated , AllowAny
 
 
 class Login(TokenObtainPairView):
@@ -58,6 +58,7 @@ class CreateAuction(ListCreateAPIView):
 class CreateProvider(ListCreateAPIView):
     queryset = Provider.objects.all()
     serializer_class = ProviderSerilizer
+    permission_classes = [IsAdminUser]
     
     
 class DeleteAuction(RetrieveUpdateDestroyAPIView):
@@ -80,6 +81,7 @@ class CreateProduct(ListCreateAPIView):
 class CreateCustomer(ListCreateAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerilizer
+    permission_classes = [IsAdminUser]
 
 class DetailOffer(ListAPIView):
     queryset = Offer.objects.all()
