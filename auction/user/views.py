@@ -12,9 +12,11 @@ import json
 from .permissions import *
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from datetime import timedelta
-from rest_framework.permissions import IsAdminUser, IsAuthenticated , AllowAnyimport requests
-from datetime import jdatetime
+from rest_framework.permissions import IsAdminUser, IsAuthenticated , AllowAny
+import requests
+import jdatetime
 from datetime import date
+
 
 
 class Login(TokenObtainPairView):
