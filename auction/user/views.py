@@ -5,6 +5,7 @@ from datetime import datetime
 from django.http.response import JsonResponse
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 import json
+from .permissions import *
 
 
 class CheckOffer(APIView):
@@ -40,11 +41,14 @@ class CheckOffer(APIView):
 class CreateAuction(ListCreateAPIView):
     queryset = Auctions.objects.all()
     serializer_class = AuctionsSerilizer
+    permission_classes = [IsProvider]
+    
 
 
 class DeleteAuction(RetrieveUpdateDestroyAPIView):
     queryset = Auctions.objects.all()
     serializer_class = AuctionsSerilizer
+    permission_classes = [IsProvider]
 
 
 class FinishedProducts(APIView):
@@ -52,3 +56,5 @@ class FinishedProducts(APIView):
         finished_products = Product.objects.filter(end_time__lt=datetime.now())
         finished_products = json.dumps(finished_products)
         return JsonResponse(finished_products, safe=False)
+    
+
